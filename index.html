@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .bike-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+        }
+
+        .bike {
+            margin: 0 50px;
+            width: 200px;
+            height: 120px;
+            background-size: cover;
+            transition: transform 1.5s ease-in-out;
+        }
+
+        .bmw {
+            background-image: url('https://imgd.aeplcdn.com/1056x594/n/cw/ec/123865/g310-rr-right-front-three-quarter-2.jpeg?isig=0&q=80&wm=2');
+        }
+
+        .royal-enfield {
+            background-image: url('https://imgd.aeplcdn.com/1056x594/n/cw/ec/49656/continental-gt-right-front-three-quarter-6.png?isig=0&q=80&wm=2');
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const bmwElement = document.querySelector('.bmw');
+            const royalEnfieldElement = document.querySelector('.royal-enfield');
+
+            animateBikes();
+
+            function animateBikes() {
+                animate(bmwElement, -200, 200);
+                animate(royalEnfieldElement, 200, -200);
+            }
+
+            function animate(element, initialTranslate, finalTranslate) {
+                element.style.transform = `translateX(${initialTranslate}px)`;
+                setTimeout(() => {
+                    element.style.transform = `translateX(${finalTranslate}px)`;
+                    setTimeout(() => {
+                        animate(element, finalTranslate, initialTranslate);
+                    }, 1500);
+                }, 1500);
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="bike-container">
+        <div class="bike bmw"></div>
+        <div class="bike royal-enfield"></div>
+    </div>
+</body>
+</html>
